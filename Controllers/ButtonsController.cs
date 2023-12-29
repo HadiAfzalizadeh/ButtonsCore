@@ -18,8 +18,9 @@ namespace ButtonListAPI.Controllers
         }
 
         [HttpPost("GetContent/{content}")]
-        public string GetContent(string content)
+        public async Task<string> GetContent(string content)
         {
+            await Task.Delay(1500);
             return content;
         }
     }
