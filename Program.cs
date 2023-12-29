@@ -1,3 +1,5 @@
+using ButtonListAPI.Services;
+
 namespace ButtonListAPI
 {
     public class Program
@@ -8,6 +10,7 @@ namespace ButtonListAPI
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSingleton<IRepository, ButtonsRepository>();
 
             var app = builder.Build();
 

@@ -1,27 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ButtonListAPI.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ButtonListAPI.Controllers
 {
     [ApiController]
     [Route("api/Buttons")]
-    public class ButtonsController : Controller
+    public class ButtonsController : ControllerBase
     {
-        private static readonly string[] buttons = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IRepository _buttonsRepository;
+        public ButtonsController(IRepository buttonsRepository) {
+            this._buttonsRepository = buttonsRepository;
+        }
 
         [HttpGet]
-        public string[] Get()
+        public ActionResult<string[]> Get()
         {
-            return buttons;
+            return Ok(this._buttonsRepository.GetAllButtons());
         }
 
         [HttpPost("GetContent/{content}")]
-        public async Task<string> GetContent(string content)
+        public async Task<ActionResult<string>> GetContent(string content)
         {
             await Task.Delay(1500);
-            return content;
+            return Ok(content);
         }
     }
 }
