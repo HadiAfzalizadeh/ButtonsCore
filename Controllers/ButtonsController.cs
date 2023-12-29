@@ -3,7 +3,7 @@
 namespace ButtonListAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]/[Action]/{content?}")]
+    [Route("api/Buttons")]
     public class ButtonsController : Controller
     {
         private static readonly string[] buttons = new[]
@@ -11,13 +11,13 @@ namespace ButtonListAPI.Controllers
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        [HttpGet(Name = "GetAllButtons")]
+        [HttpGet]
         public string[] Get()
         {
             return buttons;
         }
 
-        [HttpPost(Name = "GetButtonContent")]
+        [HttpPost("GetContent/{content}")]
         public string GetContent(string content)
         {
             return content;
